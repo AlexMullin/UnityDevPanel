@@ -1,17 +1,17 @@
 {
-    "name": "com.AlexanderMullin.DebugUI",
-    "version": "0.1.0",
-    "displayName": "Debug UI",
+    "name": "com.AlexanderMullin.DevPanel",
+    "version": "1.0.0",
+    "displayName": "Dev Panel",
     "description": "GUI for creating debug actions to assist project development",
     "unity": "2021.3",
     "unityRelease": "7f1",
     "author": {
       "name": "Alexander Mullin",
-      "email": "",
+      "email": "AlexMullin1@gmail.com",
       "url": "https://www.unity3d.com/"
     },
     "repository": {
       "type": "git",
-      "url": ""
+      "url": "https://github.com/AlexMullin/UnityDevPanel.git"
     }
   }

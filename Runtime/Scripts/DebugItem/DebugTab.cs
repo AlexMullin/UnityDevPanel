@@ -19,9 +19,6 @@ namespace DevPanel
 
             label.text = h.name;
             name = h.name;
-
-            Debug.Log($"Header 1: {header.name}");
-            Debug.Log($"Header 2: {h.name}");
         }
 
         public void ToggleTab()
