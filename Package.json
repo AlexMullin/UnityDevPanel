@@ -1,0 +1,17 @@
+{
+    "name": "com.AlexanderMullin.DebugUI",
+    "version": "0.1.0",
+    "displayName": "Debug UI",
+    "description": "GUI for creating debug actions to assist project development",
+    "unity": "2021.3",
+    "unityRelease": "7f1",
+    "author": {
+      "name": "Alexander Mullin",
+      "email": "",
+      "url": "https://www.unity3d.com/"
+    },
+    "repository": {
+      "type": "git",
+      "url": ""
+    }
+  }
