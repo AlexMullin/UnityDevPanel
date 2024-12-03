@@ -32,9 +32,8 @@ namespace DeveloperMenu.DebugItems
 
         public async void OnSubItemDestroyed()
         {
-            await Task.Delay(1); //Delay required to properly recognize the change in childcount
+            await Task.Delay(1); //Delay required to properly recognize changes in childcount.
 
-            Debug.Log($"{header.name}: Sub Item Destroyed, remaining subitems: {GetItemContainer().childCount}", this);
             if (GetItemContainer().childCount == 0)
             {
                 RequestDestroy();

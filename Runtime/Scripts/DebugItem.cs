@@ -41,7 +41,6 @@ namespace DeveloperMenu.DebugItems
 
         public void RequestDestroy()
         {
-            Debug.Log("Requesting Destroy");
             Destroy(gameObject);
             OnDestroyed?.Invoke();
         }
