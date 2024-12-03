@@ -11,9 +11,9 @@
 
 1. After conducting the initial setup, open a script to one of your Game Objects that will appear in your scene.
 
-2. The debug panel can be opened and closed by pressing **Ctrl + 0**
+2. The debug panel can be opened and closed by pressing **Ctrl + numpad0**
 
-3. In the start function of your monobehavior, Place a button into the Debug Panel using **DebugPanel.Make.(Item)**
+3. In the start function of your monobehavior, Place a button into the Debug Panel using **DebugPanel.Make.Button**
 
     * see Available Debug Items on which controls are available
 
@@ -25,51 +25,27 @@ Headings for Debug Items. They contain the following information:
 
 * Name of the Debug Item
 
-* (Optional) Which Debug Item to parent them to
-    * If no arguement is given, the debug item will not be placed inside of anything.
+* (Optional) Tab address of the buton
+    * Exmaple `Enemies/HobGoblin/Skills`
+    * If no arguement is given, the debug item will be placead in a top-level tab "Uncategorized".
 
 * (Optional) Which GameObject Owns the button
 
     * When a control is created and this is points to another gameObject, a monobehavior is created on said GameObject.
 
-        * This tracker remotely controls the button, based on Settings passed into the control.
+        * This tracker remotely controls the button, Hiding it and Destroying it in tandem with the owner gameObject.
 
     * **WARNING:**  IF A DEBUGITEM DOES NOT HAVE AN OWNER IT WILL NOT BE REMOVED FROM THE DEBUG PANEL
 
-    * **WARNING:** IF A TAB IS REMOVED, EVERYTHING IT CONTAINS WILL BE REMOVED AS WELL
-
-## DebugItem.Settings
-
-Settings are an optional parameter when creating a tab or button.
-
-Currently, there are two settings:
-
-* showDisabled: Display the control even if an owner is set.
-
-* closeDebugOnClick: If the control is a button, enabling this will close the debug menu when the button is clicked.
-
-
 # Available Debug Items
-
-## Tab
-
-Debug tabs are containers that hold other tabs and buttons to better organize long-lived DebugItems.
-
-Example: `DebugPanel.Make.Tab(new("Tabname"))`
-
-### Parameters
-
-1. Header
-
-2. (Optional) Settings
 
 ## Button
 
 Buttons are controls that can be clicked on to conduct events.
 
-Example: `DebugPanel.Make.Button(new("Button Name"), () => Debug.Log("Button Clicked"))`
+Example: `DebugPanel.Make.Button(new("ButtonName"), () => Debug.Log("Button Clicked"))`
 
-Example: `DebugPanel.Make.Button(new("Button Name", tabObject.transform, gameObject), () => Debug.Log("Button Clicked"), new(showDisabled: true) )`
+Example: `DebugPanel.Make.Button(new("Uppercut", "Enemies/HobGoblin/Skills", gameObject), () => Debug.Log("Button Clicked"))`
 
 ### Parameters
 

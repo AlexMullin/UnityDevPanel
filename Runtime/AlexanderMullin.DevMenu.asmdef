@@ -1,9 +1,7 @@
 {
-    "name": "AlexanderMullin.DevPanel.Tests",
-    "rootNamespace": "DevPanel",
-    "references": [
-        "GUID:f6e5cee3aa9754949877b0a24e4415e3"
-    ],
+    "name": "AlexanderMullin.DevMenu",
+    "rootNamespace": "",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

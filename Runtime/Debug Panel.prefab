@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7583560627379021516}
   - component: {fileID: 5913603175370260729}
-  - component: {fileID: 7088714847188476618}
+  - component: {fileID: 2466780407579381387}
   m_Layer: 5
   m_Name: Debug Panel
   m_TagString: Untagged
@@ -150,7 +150,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9204113725005804807}
   m_CullTransparentMesh: 1
---- !u!114 &7088714847188476618
+--- !u!114 &2466780407579381387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9204113725005804807}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc925be40398d904a80b6171ced863cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 5e5f1897da6c80846b60be7f2a16d8c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonPrefab: {fileID: 2287759258771665643, guid: 57d6d0d325b6c5c4e8f66d0368daa98a, type: 3}

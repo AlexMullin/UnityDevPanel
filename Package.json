@@ -1,6 +1,6 @@
 {
     "name": "com.AlexanderMullin.DevPanel",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "displayName": "Dev Panel",
     "description": "GUI for creating debug actions to assist project development",
     "unity": "2021.3",

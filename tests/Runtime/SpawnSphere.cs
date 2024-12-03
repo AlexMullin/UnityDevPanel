@@ -1,15 +1,14 @@
-using DevPanel;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public class SpawnSphere : MonoBehaviour
+namespace DeveloperMenu.Tests 
 {
-    [SerializeField] GameObject spherePrefab;
-
-
-    private void Start()
+    public class SpawnSphere : MonoBehaviour
     {
-        DebugPanel.Make.Button(new("SpawnSphere"), () => Instantiate(spherePrefab));
+        [SerializeField] GameObject spherePrefab;
+
+
+        private void Start()
+        {
+            DevMenu.Make.Button(new("SpawnSphere"), () => Instantiate(spherePrefab));
+        }
     }
 }

@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DevPanel
-{
+using DeveloperMenu.DebugItems;
 
-    public class DebugPanel : MonoBehaviour 
+namespace DeveloperMenu
+{
+    public class DevMenu : MonoBehaviour 
     {
-        public static DebugPanel Instance { get; private set; }
+        public static DevMenu Instance { get; private set; }
         
         [Header("Prefabs")]
         [SerializeField] private GameObject buttonPrefab;
@@ -33,7 +34,6 @@ namespace DevPanel
             {
                 SetMenuActive(!MainPanel.activeInHierarchy);
 
-                
             }
 
         }
@@ -60,12 +60,75 @@ namespace DevPanel
                 Cursor.visible = previousCursorVisibility;
             }
         }
-        
         /// <summary>
         /// Generate Elements to place in the Debug Panel
         /// </summary>
         public static class Make
         {
+            private static DebugTab FindOrMakeTab(string address)
+            {
+                /// <summary>
+                /// Create a tab
+                /// </summary>
+                /// <param name="header">Name, Parent, and Owner of the DebugItem</param>
+                /// <param name="settings">Additional Settings of the button (Example new(</param>
+                DebugTab MakeTab(DebugItem.Header header, Transform parent)
+                {
+                    DebugTab tab = Instantiate(Instance.tabPrefab, parent).GetComponent<DebugTab>();
+                    tab.Initialize(header);
+
+                    return tab;
+                }
+
+
+                DebugTab currentTab = null;
+                DebugTab previousTab = null;
+
+                Transform currentLevel = Instance.MainPanel.transform;
+                string addressBuild = "";
+
+                foreach (string subtab in address.Split('/'))
+                {
+                    if (subtab == "") continue;
+
+                    addressBuild += $"{subtab}";
+
+
+                    currentTab = null;
+
+
+                    //Search the current level for the correct tab
+                    DebugTab[] tabResults = currentLevel.GetComponentsInChildren<DebugTab>();
+
+                    foreach (DebugTab tab in tabResults)
+                    {
+                        if (tab.gameObject.name == subtab)
+                        {
+                            currentTab = tab;
+                            break;
+                        }
+                    }
+
+                    //If no tabs were found, make a new tab
+                    if (currentTab == null)
+                    {
+                        currentTab = MakeTab(new(subtab, addressBuild), currentLevel);
+                    }
+
+                    if (previousTab != null)
+                    {
+                        currentTab.OnDestroyed += previousTab.OnSubItemDestroyed;
+                    }
+
+                    previousTab = currentTab;
+                    currentLevel = currentTab.GetItemContainer();
+                    addressBuild += "/";
+                }
+
+                if (currentTab != null) return currentTab;
+                else return FindOrMakeTab("Uncategorized");
+            }
+
             /// <summary>
             /// Places a key on a gameObject as a component that remotely controls the debug item
             /// </summary>
@@ -84,10 +147,15 @@ namespace DevPanel
             /// <param name="action">What does the button do? <code> () => {Debug.Log("Button Clicked!");}</code></param>
             /// <param name="settings">Additional Settings of the button (Example new(ShowOnDisabled: true)</param>
             /// <returns></returns>
-            public static DebugButton Button(DebugItem.Header header, Action action, DebugItem.Settings settings = new())
+            public static DebugButton Button(DebugItem.Header header, Action action)
             {
-                DebugButton db = Instantiate(Instance.buttonPrefab, header.parent).GetComponent<DebugButton>();
-                db.Initialize(header, action, settings);
+                DebugTab parentTab = FindOrMakeTab(header.address);
+
+                DebugButton db = Instantiate(Instance.buttonPrefab, parentTab.GetItemContainer().transform).GetComponent<DebugButton>();
+                
+                db.Initialize(header, action);
+                db.OnDestroyed += parentTab.OnSubItemDestroyed;
+
 
                 if (header.owner != null)
                 {
@@ -97,23 +165,6 @@ namespace DevPanel
                 return db;
             }
 
-            /// <summary>
-            /// Create a tab
-            /// </summary>
-            /// <param name="header">Name, Parent, and Owner of the DebugItem</param>
-            /// <param name="settings">Additional Settings of the button (Example new(</param>
-            public static DebugTab Tab(DebugItem.Header header, DebugItem.Settings settings = new())
-            {
-                DebugTab tab = Instantiate(Instance.tabPrefab, header.parent).GetComponent<DebugTab>();
-                tab.Initialize(header, settings);
-
-                if (header.owner != null)
-                {
-                    Register(tab, header.owner.gameObject);
-                }
-
-                return tab;
-            }
         }
     }
 }
