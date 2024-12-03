@@ -25,3 +25,15 @@
 
 * Debug.Make.Tab is no longer accessible. 
     * Instead, generating buttons automatically creates tabs based on the address provided in the header
+
+## [1.1.1] - 2024-12-3
+
+### Removed
+
+* public references on DebugItem
+
+### Changed
+
+* PackageName is now called DevMenu
+
+* Namespacing adjustments

@@ -30,7 +30,7 @@ namespace DeveloperMenu
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Keypad0) && Application.isEditor)
+            if (Input.GetKeyDown(KeyCode.Keypad0))
             {
                 SetMenuActive(!MainPanel.activeInHierarchy);
 
