@@ -9,33 +9,32 @@ namespace DeveloperMenu
     public class DebugItemReference : MonoBehaviour
     {
 
-        private DebugItem _item;
-        public DebugItem Item => _item;
+        private DebugItem item;
 
         public void Initialize(DebugItem i)
         {
-            _item = i;
+            item = i;
         }
 
         private void OnEnable()
         {
-            if (Item == null) return;
+            if (item == null) return;
             
-            Item.gameObject.SetActive(true);
+            item.gameObject.SetActive(true);
         }
 
         private void OnDisable()
         {
-            if (Item == null) return;
+            if (item == null) return;
 
-            Item.gameObject.SetActive(false);
+            item.gameObject.SetActive(false);
         }
 
         private void OnDestroy()
         {
-            if (Item != null)
+            if (item != null)
             {
-                Item.RequestDestroy();
+                item.RequestDestroy();
             }
         }
     }
